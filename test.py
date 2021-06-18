@@ -1,4 +1,4 @@
-import mysql.connector
+import mysql.connector,search
 
 mydb = mysql.connector.connect(
 	host="localhost",
@@ -11,9 +11,8 @@ mycursor = mydb.cursor()
 
 mycursor.execute("SHOW TABLES")
 
-for x in mycursor:
-	print(x)
 
+print(search.search('White',50))
 
 '''
 Questions for professor:
