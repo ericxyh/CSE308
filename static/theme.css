@@ -6,3 +6,35 @@ table, th, td {
 th {
 	bold;
 }
+
+.container {
+	position: relative;
+}
+
+.stateDemo{
+	position: absolute;
+	top: 8px;
+	right: 400px;
+	font-size: 18px;
+}
+
+.stateElec{
+	position: absolute;
+	top: 110px;
+	right: 310px;
+	font-size: 18px;
+}
+
+.distElec{
+	position: absolute;
+	top: 250px;
+	right: 310px;
+	font-size: 18px;
+}
+
+.precElec{
+	position: absolute;
+	top: 410px;
+	right: 310px;
+	font-size: 18px;
+}

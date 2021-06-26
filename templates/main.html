@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>CSE308 Project</title>
+	<title>CSE308 Project - Voting Block Analysis</title>
 	<link rel="stylesheet" href="{{ url_for('static', filename='theme.css') }}">
 	<script
 	src="https://code.jquery.com/jquery-3.4.1.js"
@@ -11,19 +11,68 @@
 	<script type = "text/javascript" src = {{ url_for('static', filename='search.js') }} ></script>
 </head>
 <body>
-	<h2>CSE308 Project</h2><br>
-	<label for="race">Race:</label>
-	<select id="race">
-		<option value="White">White or European American</option>
-		<option value="Black">Black or African American</option>
-		<option value="Latino">Latino</option>
-	</select>
-	<br>
-	<label for="perc">Racial Threshold:</label>
-	<input type="number" id="perc" min="50" max="100" value="50">%
-	<br>
-	<button type="button" onclick="searchSend()">Submit</button>
-	<br><br>
-	<div id="result"></div>
+	<div class="container">
+		<h2>CSE308 Project</h2><br>
+		
+		State: 
+		<select>
+			<option>Michigan</option>
+		</select><br>
+		Data: 
+		<select>
+			<option>2016 Presidental Election
+			</option>
+		</select><br>
+		District 
+		<select>
+			<option>District 1</option>
+			<option>District 2</option>
+			<option>District 3</option>
+		</select><br>
+		Precinct 
+		<select>
+			<option>Precinct 1</option>
+			<option>Precinct 2</option>
+			<option>Precinct 3</option>
+		</select><br>
+		<div class='stateDemo' id="sd">
+			Significant Demographics in Michigan:<br>
+			White: 7803120<br>
+			Black: 1400362<br>
+			Latino: 436358
+		</div>
+		<div class="stateElec">
+			The result of 2016 Presidental election in Michigan:<br>
+			Democrat: 2210015<br>
+			Republican: 2270021<br>
+			Libertarian: 171437<br>
+			Green: 51147<br>
+		</div>
+		<div class="distElec">District Data Here</div>
+		<div class="precElec">Precinct Data Here</div>
+		<br>
+		<label for="race">Race:</label>
+		<select id="race">
+			<option value="White">White or European American</option>
+			<option value="Black">Black or African American</option>
+			<option value="Latino">Latino</option>
+		</select>
+		<br>
+		<label for="perc">Racial Threshold:</label>
+		<input type="number" id="perc" min="50" max="100" value="50">%
+		<br>
+		<label for="vperc">Voting Threshold:</label>
+		<input type="number" id="vperc" min="50" max="100" value="50">%
+		<br>
+		<button type="button" onclick="searchSend()">Find Precincts</button>
+		<br><br>
+		<div id="result">There are 32 precincts that fits the user input.<br>
+			Precincts voted for Democrat:22<br>
+			Precincts voted for Republic:10<br>
+			Precincts voted for Green:0<br>
+			Precincts voted for Libertarian:0
+		</div><br>
+		<div id="result2"></div>
+	</div>
 </body>
 </html>
