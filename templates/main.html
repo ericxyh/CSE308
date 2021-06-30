@@ -1,78 +1,117 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
 	<title>CSE308 Project - Voting Block Analysis</title>
+
+	<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<link rel="stylesheet" href="{{ url_for('static', filename='theme.css') }}">
+
 	<script
 	src="https://code.jquery.com/jquery-3.4.1.js"
 	integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
 	crossorigin="anonymous"></script>
-	<script type = "text/javascript" src = {{ url_for('static', filename='search.js') }} ></script>
+	<script type = "text/javascript" src = "{{ url_for('static', filename='search.js') }}" ></script>
 </head>
 <body>
-	<div class="container">
-		<h2>CSE308 Project</h2><br>
-		
-		State: 
-		<select>
-			<option>Michigan</option>
-		</select><br>
-		Data: 
-		<select>
-			<option>2016 Presidental Election
-			</option>
-		</select><br>
-		District 
-		<select>
-			<option>District 1</option>
-			<option>District 2</option>
-			<option>District 3</option>
-		</select><br>
-		Precinct 
-		<select>
-			<option>Precinct 1</option>
-			<option>Precinct 2</option>
-			<option>Precinct 3</option>
-		</select><br>
-		<div class='stateDemo' id="sd">
-			Significant Demographics in Michigan:<br>
-			White: 7803120<br>
-			Black: 1400362<br>
-			Latino: 436358
+	<div class="splitLeft" id="left">
+		<div class="w3-panel">
+			<h2>CSE308 Project</h2><br>
+
+			State: 
+			<select>
+				<option>Michigan</option>
+			</select><br>
+			Data: 
+			<select>
+				<option>2016 Presidental Election
+				</option>
+			</select><br>
+			District: 
+			<select>
+				<option>District 1</option>
+				<option>District 2</option>
+				<option>District 3</option>
+			</select><br>
+			Precinct :
+			<select>
+				<option>Precinct 1</option>
+				<option>Precinct 2</option>
+				<option>Precinct 3</option>
+			</select><br>
+
+			<br>
+
+			<label for="race">Race:</label>
+			<select id="race">
+				<option value="White">White or European American</option>
+				<option value="Black">Black or African American</option>
+				<option value="Latino">Latino</option>
+			</select>
+			<br>
+			<label for="perc">Racial Threshold:</label>
+			<input type="number" id="perc" min="50" max="100" value="50">%
+			<br>
+			<label for="vperc">Voting Threshold:</label>
+			<input type="number" id="vperc" min="50" max="100" value="50">%
+			<br>
+			<button type="button" onclick="searchSend()">Find Precincts</button>
 		</div>
-		<div class="stateElec">
-			The result of 2016 Presidental election in Michigan:<br>
-			Democrat: 2210015<br>
-			Republican: 2270021<br>
-			Libertarian: 171437<br>
-			Green: 51147<br>
+		<div class="w3-panel">
+			<div id="result">
+				<h4>Overall Statistic</h4>
+				<table class='w3-table-all w3-hoverable '>
+					<th>
+						<td>Proportion of Precincts</td>
+						<td>Percentage</td>
+					</th>
+					<tr>
+						<td>Total</td>
+						<td>32/23671</td>
+						<td>0.14%</td>
+					</tr>
+					<tr>
+						<td>Democrat</td>
+						<td>22/17,297</td>
+						<td>0.13%</td>
+					</tr>
+					<tr>
+						<td>Republic</td>
+						<td>10/6,374</td>
+						<td>0.16%</td>
+					</tr>
+					<tr>
+						<td>Green</td>
+						<td>N/A</td>
+						<td>N/A</td>
+					</tr>
+					<tr>
+						<td>Libertarian</td>
+						<td>N/A</td>
+						<td>N/A</td>
+					</tr>
+				</table>
+			</div><br>
+			<div id="result2"></div>
 		</div>
-		<div class="distElec">District Data Here</div>
-		<div class="precElec">Precinct Data Here</div>
-		<br>
-		<label for="race">Race:</label>
-		<select id="race">
-			<option value="White">White or European American</option>
-			<option value="Black">Black or African American</option>
-			<option value="Latino">Latino</option>
-		</select>
-		<br>
-		<label for="perc">Racial Threshold:</label>
-		<input type="number" id="perc" min="50" max="100" value="50">%
-		<br>
-		<label for="vperc">Voting Threshold:</label>
-		<input type="number" id="vperc" min="50" max="100" value="50">%
-		<br>
-		<button type="button" onclick="searchSend()">Find Precincts</button>
-		<br><br>
-		<div id="result">There are 32 precincts that fits the user input.<br>
-			Precincts voted for Democrat:22<br>
-			Precincts voted for Republic:10<br>
-			Precincts voted for Green:0<br>
-			Precincts voted for Libertarian:0
-		</div><br>
-		<div id="result2"></div>
 	</div>
+	<div class="splitRight">
+		<div class='w3-panel' id="sd">
+			Significant Demographics in Michigan:<br>
+			White: 7,803,120<br>
+			Black: 140,0362<br>
+			Latino: 436,358
+		</div>
+		<div class="w3-panel">
+			The result of 2016 Presidental election in Michigan:<br>
+			Democrat: 2,210,015<br>
+			Republican: 2,270,021<br>
+			Libertarian: 171,437<br>
+			Green: 51,147<br>
+		</div>
+		<div class="w3-panel">District Data Here</div>
+		<div class="w3-panel">Precinct Data Here</div>
+	</div>
+
 </body>
 </html>

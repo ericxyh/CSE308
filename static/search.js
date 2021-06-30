@@ -19,6 +19,8 @@ function stateData(){
 */
 
 function searchSend() {
+	console.log(document.getElementById('left').scrollTop);
+	var scroll = document.getElementById('left').scrollTop;
 	document.getElementById('result2').innerHTML = '';
 	var json = {};
 	var r = document.getElementById('race').value;
@@ -40,7 +42,7 @@ function searchSend() {
 				res = "No results found."
 			}
 			else{
-				res+= "<table><tr><th>County</th><th>Jurisdiction</th><th>Precinct</th><th>Majority Party</th></tr>"
+				res+= "<h4>Statistic by Precinct</h4><table class='w3-table-all w3-hoverable'><tr><th>County</th><th>Jurisdiction</th><th>Precinct</th><th>Majority Party</th></tr>"
 				for (var i = result.a.length - 1; i >= 0; i--) {
 					res+= "<tr>"
 					res+= "<td>"+result.a[i][0]+"</td><td>"+result.a[i][1]+"</td><td>"+result.a[i][2]+"</td>"+"</td><td>"+result.a[i][3]+"</td>"
@@ -49,6 +51,9 @@ function searchSend() {
 				res+= "</table>"
 			}
 			document.getElementById('result2').innerHTML = res;
+			console.log(document.getElementById('left').scrollTop);
+			document.getElementById('left').scrollTop = scroll;
+			console.log(document.getElementById('left').scrollTop);
 		}
 	}
 	request.open("POST", "/search");
